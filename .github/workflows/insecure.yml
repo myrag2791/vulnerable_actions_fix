@@ -1,0 +1,21 @@
+name: Secure Workflow
+
+on:
+  pull_request_target:
+    types: [opened, synchronize]
+
+# Add explicit permissions to limit token scope
+permissions:
+  contents: read
+  # Add only the permissions that are absolutely necessary
+  # For example, if you need to comment on PRs:
+  # pull-requests: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Run a script
+        run: echo "Running with limited permissions"
